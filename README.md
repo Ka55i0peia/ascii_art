@@ -4,11 +4,11 @@
 
 -----
 
-**Table of Contents**
+## Table of Contents
 
 - [draw\_ascii](#draw_ascii)
+  - [Table of Contents](#table-of-contents)
   - [License](#license)
-
 
 ## License
 
