@@ -39,8 +39,9 @@ path = "draw_ascii/__about__.py"
 
 [tool.hatch.envs.default]
 dependencies = [
-  "isort",
   "black",
+  "isort",
+  "pylint>=2.15, <3",
   "pytest",
   "pytest-cov",
   "uvicorn>=0.20, <1"
@@ -49,6 +50,7 @@ dependencies = [
 [tool.hatch.envs.default.scripts]
 cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=draw_ascii --cov=tests {args}"
 no-cov = "cov --no-cov {args}"
+lint = "pylint draw_ascii tests"
 launch = "uvicorn draw_ascii.main:app --reload --port 8085"
 
 [[tool.hatch.envs.test.matrix]]

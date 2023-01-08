@@ -1,4 +1,4 @@
-name: test
+name: Running unit test and linters
 
 on:
   pull_request:
@@ -34,5 +34,9 @@ jobs:
     - name: Install Hatch
       run: pip install --upgrade hatch
 
+    - name: Run linters
+      run: hatch run lint
+
     - name: Run tests
       run: hatch run cov
+
