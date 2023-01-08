@@ -8,7 +8,7 @@ app = FastAPI()
 def asciinize(
     text: str = "hi there!",
     font: str = "univers",
-    width: str = 200,
+    width: int = 200,
 ):
     """Returns ascii version of text.
 
