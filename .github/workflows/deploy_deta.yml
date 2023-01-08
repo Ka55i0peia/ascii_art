@@ -1,0 +1,30 @@
+name: Deploy to Deta
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: Provide requirements (for deta)
+        run: |
+          python -m pip install pip-tools>=6.12
+          cd draw_ascii
+          pip-compile --output-file requirements.txt ../pyproject.toml
+      
+      - name: Deploy to deta
+        uses: BogDAAAMN/deta-deploy-action@v1.0.1
+        with:
+          deta-access-token: ${{ secrets.DETA_TOKEN }}
+          deta-name: draw_ascii 
+          deta-project-dir: draw_ascii
