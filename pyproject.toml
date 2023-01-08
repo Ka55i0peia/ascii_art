@@ -24,6 +24,7 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
+  "fastapi >= 0.89, <1",
   "pyfiglet==0.8.post1"
 ]
 dynamic = ["version"]
@@ -38,12 +39,17 @@ path = "draw_ascii/__about__.py"
 
 [tool.hatch.envs.default]
 dependencies = [
+  "isort",
+  "black",
   "pytest",
   "pytest-cov",
+  "uvicorn>=0.20, <1"
+
 ]
 [tool.hatch.envs.default.scripts]
 cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=draw_ascii --cov=tests {args}"
 no-cov = "cov --no-cov {args}"
+launch = "uvicorn draw_ascii.main:app --reload --port 8085"
 
 [[tool.hatch.envs.test.matrix]]
 python = ["37", "38", "39", "310", "311"]
